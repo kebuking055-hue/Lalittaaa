@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for you :)</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;padding:20px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f1ea;color:#292725;
+}
+.card{
+  width:min(430px,100%);min-height:600px;
+  background:#fffdf9;border:1px solid #d8d0c5;
+  border-radius:26px;padding:34px 28px;
+  box-shadow:0 12px 35px rgba(40,35,30,.10);
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+}
+.page{width:100%}
+.hidden{display:none}
+.emoji{font-size:58px;margin-bottom:12px}
+.tag{
+  display:inline-block;padding:6px 12px;border-radius:999px;
+  background:#eee7dc;font-size:13px;font-weight:700;
+  letter-spacing:.4px;margin-bottom:12px;
+}
+h1{font-size:28px;line-height:1.2;margin:8px 0 16px}
+p{font-size:17px;line-height:1.55;margin:10px 0}
+.muted{font-size:14px;color:#777}
+.box{
+  background:#f7f3ed;border-radius:18px;padding:18px;
+  margin:18px 0;text-align:left;
+}
+button{
+  border:0;border-radius:13px;padding:12px 19px;
+  margin:7px 3px 0;background:#292725;color:white;
+  font-size:15px;font-weight:700;cursor:pointer;
+}
+button.secondary{background:#eee7dc;color:#292725}
+button:active{transform:scale(.97)}
+.dots{margin-top:22px;color:#aaa;font-size:13px}
+.progress{
+  height:10px;background:#e8e1d7;border-radius:99px;
+  overflow:hidden;margin:18px 0;
+}
+.progress span{display:block;height:100%;width:0;background:#292725;transition:width .25s}
+</style>
+</head>
+
+<body>
+<div class="card">
+
+<section id="p1" class="page">
+  <div class="emoji">👋</div>
+  <div class="tag">for you :)</div>
+  <h1>oi you</h1>
+  <p>Okay, I could've just sent you a message...</p>
+  <p>but apparently I decided to make a whole tiny website instead.</p>
+  <p class="muted">Don't ask why. Just click.</p>
+  <button onclick="go(2)">next →</button>
+  <div class="dots">1 / 8</div>
+</section>
+
+<section id="p2" class="page hidden">
+  <div class="emoji">🤨</div>
+  <h1>first of all...</h1>
+  <p><b>why u sad?</b></p>
+  <div class="box">
+    <p>Someone annoyed you?</p>
+    <p>Bad day?</p>
+    <p>Overthinking again?</p>
+    <p>Or are you just being moody for no reason? 😭</p>
+  </div>
+  <button onclick="go(3)">keep going</button>
+  <div class="dots">2 / 8</div>
+</section>
+
+<section id="p3" class="page hidden">
+  <div class="emoji">🫵</div>
+  <h1>okay, hand it over</h1>
+  <p>You can pass the bad mood here.</p>
+  <p>Complaints too. Overthinking too.</p>
+  <p>I'll take the whole package.</p>
+  <button onclick="go(4)">fine, take it</button>
+  <div class="dots">3 / 8</div>
+</section>
+
+<section id="p4" class="page hidden">
+  <div class="emoji">📦</div>
+  <h1>mood delivery received</h1>
+  <div class="box">
+    <p>✓ bad mood received</p>
+    <p>✓ unnecessary overthinking received</p>
+    <p>✓ random nonsense received</p>
+    <p>✓ attitude received</p>
+  </div>
+  <p class="muted">Processing... please wait.</p>
+  <button onclick="go(5)">next →</button>
+  <div class="dots">4 / 8</div>
+</section>
+
+<section id="p5" class="page hidden">
+  <div class="emoji">🗿</div>
+  <h1>very serious investigation</h1>
+  <p>After extensive research, the results are in.</p>
+  <div class="box" style="text-align:center">
+    <p><b>Official diagnosis:</b></p>
+    <p style="font-size:24px"><b>you need a snack.</b> 🍪</p>
+  </div>
+  <p class="muted">This conclusion was reached by absolutely nobody qualified.</p>
+  <button onclick="go(6)">acceptable</button>
+  <div class="dots">5 / 8</div>
+</section>
+
+<section id="p6" class="page hidden">
+  <div class="emoji">🎲</div>
+  <h1>random excuse generator</h1>
+  <p>Pick your totally legitimate reason for being moody:</p>
+  <div class="box" id="excuse">Press the button.</div>
+  <button onclick="randomExcuse()">generate</button>
+  <button class="secondary" onclick="go(7)">next →</button>
+  <div class="dots">6 / 8</div>
+</section>
+
+<section id="p7" class="page hidden">
+  <div class="emoji">🫂</div>
+  <h1>okay, jokes aside</h1>
+  <p>If something is actually bothering you, you don't have to explain everything.</p>
+  <p>If you wanna talk, I'm here.</p>
+  <p>If you don't, that's okay too.</p>
+  <button onclick="go(8)">one more</button>
+  <div class="dots">7 / 8</div>
+</section>
+
+<section id="p8" class="page hidden">
+  <div class="emoji">😌</div>
+  <h1>that's all</h1>
+  <p>Just wanted to make you smile a little.</p>
+  <p>So yeah...</p>
+  <p><b>stop being so damn moody 🙄</b></p>
+  <p class="muted">And if you're still not okay, I'm still here.</p>
+  <div class="progress"><span id="bar"></span></div>
+  <button onclick="finish()">click for absolutely nothing</button>
+  <div id="finishText" class="muted"></div>
+  <div class="dots">8 / 8</div>
+</section>
+
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));
+  document.getElementById('p'+n).classList.remove('hidden');
+  window.scrollTo(0,0);
+}
+
+const excuses=[
+  "the Wi-Fi was disrespectful.",
+  "the universe is buffering.",
+  "someone breathed too loudly.",
+  "not enough snacks today.",
+  "my brain opened 47 tabs.",
+  "I woke up and chose attitude.",
+  "no reason. just vibes.",
+  "this is between me and the moon."
+];
+
+function randomExcuse(){
+  const box=document.getElementById('excuse');
+  box.textContent=excuses[Math.floor(Math.random()*excuses.length)];
+}
+
+function finish(){
+  const bar=document.getElementById('bar');
+  const text=document.getElementById('finishText');
+  bar.style.width='100%';
+  text.textContent='Congratulations. You successfully did absolutely nothing.';
+}
+</script>
+</body>
+</html>
